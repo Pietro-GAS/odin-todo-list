@@ -1,0 +1,17 @@
+{
+  "name": "odin-todo-list",
+  "version": "1.0.0",
+  "description": "The goal of this project is to create a todo list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-merge": "^6.0.1"
+  }
+}
