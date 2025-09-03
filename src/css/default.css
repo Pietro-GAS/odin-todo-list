@@ -7,11 +7,20 @@ body {
     grid-template: 100vh / 1fr 4fr;
 }
 
-.sidebar {
+#sidebar {
     grid-area: 1 / span 1 / 1 / span 1;
     background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.main {
+#project-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#main {
     grid-area: 1 / span 1 / 2 / span 1;
 }
