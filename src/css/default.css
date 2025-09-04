@@ -19,6 +19,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 10px;
+}
+
+.project-item {
+    background-color: white;
+    padding: 3px;
 }
 
 #main {

@@ -1,23 +1,68 @@
-const projects = ["New Project"];
+//const projects = ["New Project"];
+import { saveProjects, loadProjects, clearProjects } from "./storage.js";
 
 function initialiseLogic() {
     // to be developed
+    let myProjects;
+    if (loadProjects() == null) {
+      myProjects = new ProjectList(["My First Project"]);
+      saveProjects(myProjects);
+    } else {
+      myProjects = loadProjects();
+    }
+    //const myProjects = new ProjectList(["New Project"]);
+    return myProjects;
 }
 
-function newProject(project) {
-    projects.push(project);
+function newProject(projectList, project) {
+    projectList.addProject(project);
 }
 
-function editProject(oldProject, newProject) {
-    const index = projects.indexOf(oldProject);
-    projects[index] = newProject;
+function editProject(projectList, oldProject, newProject) {
+    projectList.editProject(oldProject, newProject);
 }
 
-function deleteProject(project) {
-    const index = projects.indexOf(project);
+function deleteProject(projectList, project) {
+    projectList.deleteProject(project);
+}
+
+function listProjects(projectList) {
+  projectList.getProjects();
+}
+
+class ProjectList {
+  #projects;
+  constructor(projects) {
+    this.#projects = projects;
+  }
+
+  getProjects() {
+    return this.#projects;
+  }
+
+  setProjects(projects) {
+    this.#projects = projects;
+  }
+
+  addProject(project) {
+    this.#projects.push(project);
+  }
+
+  editProject(oldProject, newProject) {
+    const index = this.#projects.indexOf(oldProject);
+    this.#projects[index] = newProject;
+  }
+
+  deleteProject(project) {
+    const index = this.#projects.indexOf(project);
     if (index > -1) {
-        projects.splice(index, 1);
-    };
+        this.#projects.splice(index, 1);
+    }
+  }
+
+  stringify() {
+    return JSON.stringify({["projects"]: this.getProjects()})
+  }
 }
 
 class Task {
@@ -75,4 +120,4 @@ class Task {
   }
 }
 
-export { initialiseLogic, projects, newProject, editProject, deleteProject, Task }
+export { initialiseLogic, newProject, editProject, deleteProject, Task, ProjectList }

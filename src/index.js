@@ -4,6 +4,7 @@ import { initialiseLogic } from "./scripts/logic.js";
 
 const main = (() => {
     document.addEventListener("DOMContentLoaded", () =>{
+        //localStorage.clear() // uncomment to reset storage
         initialiseLogic(); // to be developed
         loadDOM();
     });

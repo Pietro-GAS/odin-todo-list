@@ -1,5 +1,9 @@
 //DOM manipulation
-import { projects, newProject, editProject, deleteProject } from "./logic.js"
+import { newProject, editProject, deleteProject, ProjectList } from "./logic.js"
+import { loadProjects, saveProjects, clearProjects } from "./storage.js";
+
+let myProjectsData = loadProjects();
+const myProjects = new ProjectList(myProjectsData.projects);
 
 export function loadDOM() {
     const body = document.querySelector("body");
@@ -22,9 +26,9 @@ export function loadDOM() {
     btnNewProject.setAttribute("id", "new-project");
     btnNewProject.textContent = "New Project";
     btnNewProject.addEventListener("click", () => {
-        newProject("test");
+        newProject(myProjects, "test");
         listProjects();
-        console.log(projects); // for testing
+        console.log(myProjects); // for testing
     })
     sidebar.appendChild(btnNewProject);
 
@@ -46,9 +50,9 @@ export function loadDOM() {
 
     function listProjects() {
         projectSection.replaceChildren();
-        for (let i = 0; i < projects.length; i++) {
+        for (let i = 0; i < myProjects.getProjects().length; i++) {
             const project = document.createElement("div");
-            project.textContent = projects[i];
+            project.textContent = myProjects.getProjects()[i];
             project.setAttribute("class", "project-item");
             projectSection.appendChild(project);
         }
